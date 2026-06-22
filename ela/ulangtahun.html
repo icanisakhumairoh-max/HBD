@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 19th Birthday Adek Sayang! 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&display=swap');
+
+        :root {
+            --pink-soft: #ffe5ec;
+            --pink-medium: #ffb3c6;
+            --pink-dark: #ff758f;
+            --pink-deep: #c9184a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--pink-soft), #fff0f3);
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Musik Tersembunyi */
+        .music-container {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        /* Banner Utama */
+        header {
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-bottom: 3px dashed var(--pink-medium);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Sacramento', cursive;
+            font-size: 4rem;
+            color: var(--pink-deep);
+            margin: 0;
+            text-shadow: 2px 2px #fff;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pink-dark);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 50px 20px;
+        }
+
+        /* Surat dari Kakak */
+        .letter-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 117, 143, 0.2);
+            border: 2px solid var(--pink-soft);
+            margin-bottom: 40px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .letter-box:hover {
+            transform: scale(1.02);
+        }
+
+        .letter-content {
+            display: none;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            text-align: left;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .click-hint {
+            color: var(--pink-dark);
+            font-weight: bold;
+            font-size: 1.2rem;
+            animation: bounce 1.5s infinite;
+        }
+
+        /* Mini Game Bagian */
+        .game-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px dashed var(--pink-medium);
+            margin-bottom: 40px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gift-card {
+            background: var(--pink-medium);
+            color: white;
+            width: 150px;
+            height: 200px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+        }
+
+        .gift-card.flipped {
+            background: white;
+            color: var(--pink-deep);
+            border: 2px solid var(--pink-dark);
+            transform: rotateY(180deg);
+        }
+
+        /* --- BARU: Bagian Galeri Foto --- */
+        .photo-gallery {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid var(--pink-soft);
+            margin-bottom: 40px;
+            box-shadow: 0 8px 20px rgba(255, 179, 198, 0.2);
+        }
+
+        .photo-gallery h3 {
+            color: var(--pink-deep);
+            margin-bottom: 25px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-item {
+            position: relative;
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: rotate(3deg) scale(1.05);
+            box-shadow: 0 8px 15px rgba(255, 77, 109, 0.2);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            aspect-ratio: 1 / 1; /* Membuat foto menjadi kotak otomatis */
+            object-fit: cover; /* Agar foto terpotong rapi dalam kotak */
+            border: 3px solid var(--pink-soft);
+        }
+
+        .photo-caption {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--pink-dark);
+            font-weight: bold;
+        }
+
+        /* Animasi Balon & Hati */
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            width: 50px;
+            height: 65px;
+            background: var(--pink-dark);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 22px;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-top: 8px solid inherit;
+        }
+
+        /* Keyframes */
+        @keyframes floatUp {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) translateX(50px); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        footer {
+            margin-top: 50px;
+            color: var(--pink-dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="music-container">
+        <iframe width="560" height="315" 
+            src="https://youtu.be/ilFvfbcZHlA?si=NoTfnlR2KtA3bE54" 
+            allow="autoplay">
+        </iframe>
+    </div>
+
+    <header>
+        <h1>Hbd Elalaaaa! 🌸</h1>
+        <div class="subtitle">Official 19th Birthday • 22 Juni 2026</div>
+    </header>
+
+    <div class="container">
+        
+        <div class="letter-box" onclick="openLetter()">
+            <div id="clickHint" class="click-hint">Klik di sini untuk membuka surat dari Kakak... 💌</div>
+            <div id="letterContent" class="letter-content">
+                <p><strong>Dearest Adek Perempuan Kakak yang Cantik,</strong></p>
+                <p>Selamat ulang tahun yang ke-19, gan!, gak kerasa ente sekarang udah makin gede aja, udah bukan bocil lagi.</p>
+                <p>Di tanggal 22 Juni 2026 ini, aing cuma mau bilang makasih udah nemenin hari-hari aing lewat segala kegabutan dan kerandoman ente. Semoga di usia yang baru ini, ente makin dewasa, makin pinter, dilancarin kuliah atau segala urusannya, dan pastinya tetep jadi temen gibah terbaiknya aing.</p>
+                <p>Traktiran jangan lupa ya, gan! Sehat dan bahagia terus pokoknya!*Happy level 19, enjoy your day!* 🥳💕</p>
+                <p style="text-align: right; font-weight: bold; color: var(--pink-dark);">With love,<br>Kakakmu ✨</p>
+            </div>
+        </div>
+
+        <div class="game-section">
+            <h3>🎁 Mini Game: Pilih Kartu Harapan Hari Ini! 🎁</h3>
+            <p>Pilih salah satu kartu di bawah untuk melihat kejutan doamu hari ini:</p>
+            
+            <div class="card-container">
+                <div class="gift-card" onclick="flipCard(this, 'Rezeki & Keberuntungan Melimpah! 💸🌟')">Kartu 1</div>
+                <div class="gift-card" onclick="flipCard(this, 'Impian & Cita-citamu Segera Tercapai! 🎓✨')">Kartu 2</div>
+                <div class="gift-card" onclick="flipCard(this, 'Selalu Dikelilingi Kebahagiaan & Kasih Sayang! 💗🌷')">Kartu 3</div>
+            </div>
+        </div>
+
+        <div class="photo-gallery">
+            <h3>📸 Galeri Foto Kenangan 📸</h3>
+            <div class="gallery-grid">
+                <div class="photo-item">
+                    <img src="foto1.jpg" alt="Foto Adik 1">
+                    <span class="photo-caption">Anjayyyy</span>
+                </div>
+                <div class="photo-item">
+                    <img src="foto2.jpg" alt="Foto Adik 2">
+                    <span class="photo-caption">kiw kiw 😄</span>
+                </div>
+                <div class="photo-item">
+                    <img src="foto3.jpg" alt="Foto Adik 3">
+                    <span class="photo-caption">Gaya Kece 😎</span>
+                </div>
+                <div class="photo-item">
+                    <img src="foto4.jpg" alt="Foto Adik 4">
+                    <span class="photo-caption">Adek Tercinta ❤️</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        Dibuat dengan penuh kasih sayang oleh Kakak 💖 | 22 Juni 2026
+    </footer>
+
+    <script>
+        // Fungsi Membuka Surat
+        function openLetter() {
+            document.getElementById('clickHint').style.display = 'none';
+            document.getElementById('letterContent').style.display = 'block';
+            createSparks();
+        }
+
+        // Fungsi Mini Game Kartu
+        function flipCard(card, message) {
+            if(!card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                card.innerHTML = `<span style="transform: rotateY(180deg); display: inline-block; padding: 10px;">${message}</span>`;
+            }
+        }
+
+        // Generator Animasi Balon Otomatis
+        function createBalloons() {
+            const colors = ['#ff758f', '#ffb3c6', '#ffccd5', '#ff4d6d', '#fff0f3'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.classList.add('balloon');
+                    
+                    balloon.style.left = Math.random() * 100 + 'vw';
+                    balloon.style.animationDuration = (Math.random() * 4 + 6) + 's'; 
+                    balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    balloon.style.width = Math.random() * 30 + 30 + 'px';
+                    balloon.style.height = balloon.style.width;
+                    
+                    document.body.appendChild(balloon);
+
+                    setTimeout(() => { balloon.remove(); }, 10000);
+                }, i * 400);
+            }
+        }
+
+        function createSparks() {
+            createBalloons();
+        }
+
+        window.onload = createBalloons;
+    </script>
+</body>
+</html>
